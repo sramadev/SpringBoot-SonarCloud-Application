@@ -50,13 +50,13 @@ public class SonarJobInfoController {
 
 	@PutMapping("/sonarJobs/{id}")
 	public ResponseEntity<SonarJobInfo> updateJob(@PathVariable(value = "id") Long jobId,
-			@Valid @RequestBody SonarJobInfo sonarJobIndo) throws ResourceNotFoundException {
+			@Valid @RequestBody SonarJobInfo sonarJobInfo) throws ResourceNotFoundException {
 		SonarJobInfo sonarJobInfo = sonarJobInfoRepository.findById(jobId)
 				.orElseThrow(() -> new ResourceNotFoundException("SonarJob not found for this id :: " + jobId));
 
-		sonarJobInfo.setEmailId(sonarJobIndo.getEmailId());
-		sonarJobInfo.setJobType(sonarJobIndo.getJobType());
-		sonarJobInfo.setJobName(sonarJobIndo.getJobName());
+		sonarJobInfo.setEmailId(sonarJobInfo.getEmailId());
+		sonarJobInfo.setJobType(sonarJobInfo.getJobType());
+		sonarJobInfo.setJobName(sonarJobInfo.getJobName());
 		final SonarJobInfo updateJobInfo = sonarJobInfoRepository.save(sonarJobInfo);
 		return ResponseEntity.ok(updateJobInfo);
 	}

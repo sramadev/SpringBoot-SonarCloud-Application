@@ -52,7 +52,7 @@ public class EmployeeControllerIntegrationTest {
 	@Test
 	public void testGetEmployeeById() {
 		SonarJobInfo employee = restTemplate.getForObject(getRootUrl() + "/employees/1", SonarJobInfo.class);
-		System.out.println(employee.getFirstName());
+		System.out.println(employee.getJobName());
 		assertNotNull(employee);
 	}
 
@@ -60,8 +60,8 @@ public class EmployeeControllerIntegrationTest {
 	public void testCreateEmployee() {
 		SonarJobInfo employee = new SonarJobInfo();
 		employee.setEmailId("admin@gmail.com");
-		employee.setFirstName("admin");
-		employee.setLastName("admin");
+		employee.setJobName("admin");
+		employee.setJobType("admin");
 
 		ResponseEntity<SonarJobInfo> postResponse = restTemplate.postForEntity(getRootUrl() + "/employees", employee, SonarJobInfo.class);
 		assertNotNull(postResponse);
@@ -72,8 +72,8 @@ public class EmployeeControllerIntegrationTest {
 	public void testUpdateEmployee() {
 		int id = 1;
 		SonarJobInfo employee = restTemplate.getForObject(getRootUrl() + "/employees/" + id, SonarJobInfo.class);
-		employee.setFirstName("admin1");
-		employee.setLastName("admin2");
+		employee.setJobName("admin1");
+		employee.setJobType("admin2");
 
 		restTemplate.put(getRootUrl() + "/employees/" + id, employee);
 
